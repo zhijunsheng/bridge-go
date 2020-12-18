@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"net"
+	"time"
 )
 
 func main() {
@@ -12,6 +13,10 @@ func main() {
 	for {
 		conn, _ := listener.Accept()
 		fmt.Printf("%s <---> %s\n", conn.LocalAddr(), conn.RemoteAddr())
-		io.WriteString(conn, `0,0,3,3`+"\n")
+		for col := 0; col < 5; col++ {
+			move := fmt.Sprintf("%d,1,%d,3\n", col, col)
+			io.WriteString(conn, move)
+			time.Sleep(2 * time.Second)
+		}
 	}
 }
