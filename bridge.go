@@ -12,6 +12,6 @@ func main() {
 	for {
 		conn, _ := listener.Accept()
 		fmt.Printf("%s <---> %s\n", conn.LocalAddr(), conn.RemoteAddr())
-		io.WriteString(conn, `0,0,3,3`+"\n") // 0,0,3,3\n
+		io.WriteString(conn, `0,0,3,3`+"\n")
 	}
 }
